@@ -14,3 +14,25 @@ export const App = () => {
     </div>
   );
 };
+// import { BrowserRouter } from "react-router-dom";
+// ReactDOM.render(
+//   <BrowserRouter>
+//     <App />
+//   </BrowserRouter>,
+//   document.querySelector("#root")
+// );
+// import { Route } from "react-router-dom";
+
+// const App = () => (
+//   <>
+//     <Route path="/" exact>
+//       <Home />
+//     </Route>
+//     <Route path="/about">
+//       <About />
+//     </Route>
+//     <Route path="/contact">
+//       <Contact />
+//     </Route>
+//   </>
+// );
