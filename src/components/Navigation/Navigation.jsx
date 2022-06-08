@@ -4,7 +4,7 @@ import s from './navigation.module.css'
 const Navigation = () => {
 return (
 <nav className={s.sectionNav}>
-    <NavLink to='/home' className={({ isActive }) =>
+    <NavLink to='/' className={({ isActive }) =>
                 !isActive ? `${s.link}` : `${s.actLink}`
               }>Home</NavLink>
     <NavLink to='/movies' className={({ isActive }) =>

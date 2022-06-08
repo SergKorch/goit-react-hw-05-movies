@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import BackLink from 'components/BackLink/BackLink';
 import movieId from 'services/movieId/';
 const InfoFilm = () => {
   const { filmId } = useParams();
@@ -14,6 +15,7 @@ const InfoFilm = () => {
     <div>
     <img src="" alt="" />
       <h1>{`Film ${filmId}`}</h1>
+      <BackLink/>
       <Link to={`/films/${filmId}/cast`}>Casts</Link>
       <Link to={`/films/${filmId}/reviews`}>Reviews</Link>
     </div>
