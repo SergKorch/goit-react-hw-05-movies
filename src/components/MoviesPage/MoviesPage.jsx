@@ -23,10 +23,7 @@ const MoviesPage = () => {
 
   return (
     <div className={s.SearchForm}>
-      <form
-        onSubmit={handleSubmit}
-        
-      >
+      <form onSubmit={handleSubmit}>
         <input
           className={s.SearchForm__input}
           type="text"
@@ -35,23 +32,22 @@ const MoviesPage = () => {
           placeholder="Search films"
           name="query"
         />
-                <button type="submit" className={s.SearchForm__button}>
+        <button type="submit" className={s.SearchForm__button}>
           <span className={s.SearchForm__button__label}>Search</span>
         </button>
       </form>
       {films && (
         <div className={s.section__search}>
-         {films && <h2 className={s.title}>
-Search results</h2>}
+          {films && <h2 className={s.title}>Search results</h2>}
           <ul>
-            {films.data.results.map(film => (
-              <li className={s.search__item} key={film.id}>
+            {films.data.results.map(({ id, original_title }) => (
+              <li className={s.search__item} key={id}>
                 <Link
-                  to={`/movies/${film.id}`}
+                  to={`/movies/${id}`}
                   state={{ from: location }}
                   className={s.trending__list}
                 >
-                  {film.original_title}
+                  {original_title}
                 </Link>
               </li>
             ))}

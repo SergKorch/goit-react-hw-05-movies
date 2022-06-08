@@ -1,21 +1,21 @@
 import s from './cast.module.css';
 const Cast = ({ cast }) => {
-  console.log('Cast');
   return (
     <ul className={s.section__casts}>
-      {cast.map(el => {
-        return (
-          <li key={el.id} className={s.cast__card}>
-            <img
-              className={s.foto}
-              src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
-              alt={el.name}
-            />
-            <p>{el.name}</p>
-            <p>{el.character}</p>
-          </li>
-        );
-      })}
+      {cast &&
+        cast.map(({ id, profile_path, name, character }) => {
+          return (
+            <li key={id} className={s.cast__card}>
+              <img
+                className={s.foto}
+                src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                alt={name}
+              />
+              <p>{name}</p>
+              <p>{character}</p>
+            </li>
+          );
+        })}
     </ul>
   );
 };

@@ -17,14 +17,14 @@ const HomePage = () => {
       <h2 className={s.title}>Trending today</h2>
       <ul>
         {films &&
-          films.data.results.map(film => (
-            <li className={s.trending__item} key={film.id}>
+          films.data.results.map(({ id, original_title }) => (
+            <li className={s.trending__item} key={id}>
               <Link
-                to={`/movies/${film.id}`}
+                to={`/movies/${id}`}
                 state={{ from: location }}
                 className={s.trending__list}
               >
-                {film.original_title}
+                {original_title}
               </Link>
             </li>
           ))}

@@ -1,17 +1,16 @@
 import { Link, useParams, Routes, Route } from 'react-router-dom';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import BackLink from 'components/BackLink/BackLink';
 import movieIdAPI from 'services/movieIdAPI/movieIdAPI';
 import cardMoviesAPI from 'services/cardMoviesAPI';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
 import s from './MovieDetailsPage.module.css';
+const Cast = lazy(() => import('components/Cast/Cast.jsx'));
+const Reviews = lazy(() => import('components/Reviews/Reviews.jsx'));
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [info, setInfo] = useState(null);
   const [film, setFilm] = useState(null);
 
-  console.log('useState()=', useState());
   useEffect(() => {
     movieIdAPI(movieId)
       .then(setInfo)
@@ -23,7 +22,7 @@ const MovieDetailsPage = () => {
   return (
     <div className={s.section_card}>
       <BackLink />
-      {film && (
+      {film && movieId && (
         <>
           <img
             className={s.section_foto}
@@ -35,8 +34,8 @@ const MovieDetailsPage = () => {
           <p>{film.data.overview}</p>
           <h2>Genres</h2>
           <ul>
-            {film.data.genres.map(genr => {
-              return <li key={genr.id}>{genr.name}</li>;
+            {film.data.genres.map(({ id, name }) => {
+              return <li key={id}>{name}</li>;
             })}
           </ul>
           <h2>Additional information</h2>
