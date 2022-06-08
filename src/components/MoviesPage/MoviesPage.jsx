@@ -1,9 +1,9 @@
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import s from './searchform.module.css';
+import s from './MoviesPage.module.css';
 import searchAPI from 'services/searchAPI';
 // import userEvent from "@testing-library/user-event";
-const Search = () => {
+const MoviesPage = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
@@ -47,4 +47,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default MoviesPage;

@@ -3,8 +3,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import trendingAPI from 'services/trendingAPI';
-import s from './trending.module.css';
-const Trending = () => {
+import s from './HomePage.module.css';
+const HomePage = () => {
   const location = useLocation();
   const [films, setFilms] = useState(null);
 
@@ -35,4 +35,4 @@ const Trending = () => {
   );
 };
 
-export default Trending;
+export default HomePage;
