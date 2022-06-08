@@ -6,6 +6,7 @@ const InfoFilm = () => {
   const { movieId } = useParams();
   const [ film, setFilm ] = useState(null);
   console.log("useParams()=", useParams())
+  console.log("useState()=", useState())
   useEffect(() => {
     movieIdAPI(movieId)
       .then(setFilm)
