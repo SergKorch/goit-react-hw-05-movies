@@ -1,19 +1,24 @@
 
-const Reviews = ({reviews}) => {
-    
+import { useState, useEffect } from 'react';
+import reviewsAPI from 'services/reviewsAPI';
+const Reviews = ({movieId}) => {
+  const [review, setreview] = useState(null);
+  useEffect(() => {
+    reviewsAPI(movieId)
+      .then(setreview)
+      .catch(err => console.log(err));
+  }, [movieId]);
+  console.log("rewievs", review)
   return (
     <ul>
-      {/* {cast.map(el => {
+      {review && review.data.results.map(el => {
         return (
-          <li>
-            <img className={s.foto}              src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
-              alt={el.name}
-            />
-            <p>{el.name}</p>
-            <p>{el.character}</p>
+          <li key={el.id}>
+            <p>{el.autor}</p>
+            <p>{el.content}</p>
           </li>
         );
-      })} */}
+      })}
     </ul>
   );
     } 

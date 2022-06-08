@@ -51,7 +51,7 @@ const MovieDetailsPage = () => {
           <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path='cast' element={<Cast cast={info.data?.cast}/>} />
-            <Route path='reviews' element={<Reviews reviews={info.data?.crew} />} />
+            <Route path='reviews' element={<Reviews movieId={movieId} />} />
           </Routes>
           </Suspense>
         </>

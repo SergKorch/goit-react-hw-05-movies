@@ -5,7 +5,7 @@ const Cast = ({ cast }) => {
     <ul>
       {cast.map(el => {
         return (
-          <li>
+          <li key={el.id}>
             <img className={s.foto}              src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
               alt={el.name}
             />
