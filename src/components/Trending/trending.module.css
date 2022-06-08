@@ -1,0 +1,27 @@
+.section__trending {
+  display: block;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.title {
+  display: flex;
+  font-size: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.trending__item {
+  display: block;
+  margin: 5px;
+  padding: 5px;
+  list-style-type: none;
+  font-size: 20px;
+}
+.trending__item:hover {
+  background-color:darkorange;
+
+}
+.trending__list {
+  text-decoration: none;
+  color: black;
+}

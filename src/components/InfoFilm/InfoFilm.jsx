@@ -1,23 +1,30 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import BackLink from 'components/BackLink/BackLink';
-import movieId from 'services/movieId/';
+import movieIdAPI from 'services/movieIdAPI/movieIdAPI';
 const InfoFilm = () => {
-  const { filmId } = useParams();
+  const { movieId } = useParams();
   const [ film, setFilm ] = useState(null);
+  console.log("useParams()=", useParams())
   useEffect(() => {
-    movieId(filmId)
+    movieIdAPI(movieId)
       .then(setFilm)
       .catch(err => console.log(err));
-  }, [filmId, setFilm]);
-  console.log(film);
+  }, [movieId]);
+
   return (
     <div>
     <img src="" alt="" />
-      <h1>{`Film ${filmId}`}</h1>
+      <h1>{`Film ${movieId}`}</h1>
       <BackLink/>
-      <Link to={`/films/${filmId}/cast`}>Casts</Link>
-      <Link to={`/films/${filmId}/reviews`}>Reviews</Link>
+
+          {/* <img src={book.imgUrl} alt={book.title} />
+          <h2>{book.title}</h2>
+          <p>Автор: {book.author.name}</p>
+          <p>{book.descr}</p> */}
+      <Link to={`/movies/${movieId}/cast`}>Casts</Link>
+      <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+
     </div>
     // {film && }
   );

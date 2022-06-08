@@ -2,26 +2,29 @@
 // import s from './navigation.module.css'
 import { Link,useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import imageAPITrending from 'services/imageAPI/';
+import trendingAPI from 'services/trendingAPI';
+import s from './trending.module.css';
 const Trending = () => {
   const location=useLocation()
   const [films, setFilms] = useState(null);
 
   useEffect(() => {
-    imageAPITrending()
+    trendingAPI()
       .then(setFilms)
       .catch(err => console.log(err));
   }, []);
 
   return (
+    <div className={s.section__trending}>
+    <h2 className={s.title}>Trending today</h2>
     <ul>
       {films &&
         films.data.results.map(film => (
-          <li key={film.id}>
-            <Link to={`/films/${film.id}`} state={{ from: location }}>{film.original_title}</Link>
+          <li className={s.trending__item} key={film.id}>
+            <Link to={`/movies/${film.id}`} state={{ from: location }} className={s.trending__list}>{film.original_title}</Link>
           </li>
         ))}
-    </ul>
+    </ul></div>
   );
 };
 

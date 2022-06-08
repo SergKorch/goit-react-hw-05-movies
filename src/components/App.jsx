@@ -18,8 +18,8 @@ export const App = () => {
       <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
         <Route path="/" element={<Trending />} />
-        <Route exact path="/films" element={<Search />} />
-        <Route path="/films/:filmId/*" element={<InfoFilm />} />
+        <Route exact path="/movies" element={<Search />} />
+        <Route path="/movies/:movieId/*" element={<InfoFilm />} />
         <Route path="*" element={<NotFind />} />
       </Routes>
       </Suspense>
