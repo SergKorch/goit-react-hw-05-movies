@@ -1,3 +1,11 @@
-.foto{
-  width: 50px;
+.foto {
+  display: block;
+  width: 150px;
+  height: 225px;
+}
+.cast__card {
+  display: block;
+  text-align: center;
+  width: 150px;
+  border: 1px solid black;
 }

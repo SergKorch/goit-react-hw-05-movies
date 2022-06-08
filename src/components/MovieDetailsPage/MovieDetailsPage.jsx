@@ -1,5 +1,4 @@
 import { Link, useParams, Routes, Route } from 'react-router-dom';
-
 import { useState, useEffect, Suspense } from 'react';
 import BackLink from 'components/BackLink/BackLink';
 import movieIdAPI from 'services/movieIdAPI/movieIdAPI';
@@ -21,43 +20,41 @@ const MovieDetailsPage = () => {
       .then(setFilm)
       .catch(err => console.log(err));
   }, [movieId]);
-  // console.log('film=', film);
-  console.log('info=', info);
   return (
-    <div>
+    <div className={s.section_card}>
       <BackLink />
       {film && (
         <>
           <img
+            className={s.section_foto}
             src={`https://image.tmdb.org/t/p/w500${film.data.backdrop_path}`}
             alt={film.data.title}
           />
           <h1>{film.data.title}</h1>
-          <p>Overview</p>
+          <h2>Overview</h2>
           <p>{film.data.overview}</p>
-          <p>Genres</p>
+          <h2>Genres</h2>
           <ul>
             {film.data.genres.map(genr => {
               return <li key={genr.id}>{genr.name}</li>;
             })}
           </ul>
-          <p>Additional information</p>
+          <h2>Additional information</h2>
           <p>
-            <Link to='cast'>Casts</Link>
+            <Link to="cast">Casts</Link>
           </p>
           <p>
-            <Link to='reviews'>Reviews</Link>
+            <Link to="reviews">Reviews</Link>
           </p>
           <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path='cast' element={<Cast cast={info.data?.cast}/>} />
-            <Route path='reviews' element={<Reviews movieId={movieId} />} />
-          </Routes>
+            <Routes>
+              <Route path="cast" element={<Cast cast={info.data?.cast} />} />
+              <Route path="reviews" element={<Reviews movieId={movieId} />} />
+            </Routes>
           </Suspense>
         </>
       )}
     </div>
-    //
   );
 };
 

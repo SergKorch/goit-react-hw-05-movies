@@ -1,0 +1,9 @@
+.section_card {
+    display: block;
+    margin-left: 50px;
+    margin-right: 50px;
+} 
+.section_foto {
+    display: block;
+    max-width: 500px;
+}

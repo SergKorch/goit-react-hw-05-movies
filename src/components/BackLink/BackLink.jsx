@@ -5,7 +5,7 @@ import { Link } from './BackLink.styled';
 const BackLink = () => {
   const location = useLocation();
   return (
-    <Link to={location?.state?.from ?? '/books'}>
+    <Link to={location?.state?.from ?? '/movies'}>
       <FaArrowLeft />
       Go back
     </Link>

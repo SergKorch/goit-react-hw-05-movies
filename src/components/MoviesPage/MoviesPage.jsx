@@ -1,9 +1,10 @@
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import s from './MoviesPage.module.css';
 import searchAPI from 'services/searchAPI';
-// import userEvent from "@testing-library/user-event";
+
 const MoviesPage = () => {
+  const [films, setFilms] = useState(null);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
@@ -15,34 +16,48 @@ const MoviesPage = () => {
   useEffect(() => {
     if (query) {
       searchAPI(query)
-        .then(res => console.log(res))
+        .then(setFilms)
         .catch(err => console.log(err));
     } else console.log('Введите поиск корректно');
   }, [query]);
 
   return (
-    <div>
-      <Link to="/" state={{ from: location }}>
-        to Main
-      </Link>
+    <div className={s.SearchForm}>
       <form
         onSubmit={handleSubmit}
-        // className={s.SearchForm}
+        
       >
-        <button type="submit" className={s.SearchForm__button}>
-          <span className={s.SearchForm__button__label}>Search</span>
-        </button>
         <input
-          // className={s.SearchForm__input}
+          className={s.SearchForm__input}
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search films"
           name="query"
-          // value={imageName}
-          // onChange={handleNameChange}
         />
+                <button type="submit" className={s.SearchForm__button}>
+          <span className={s.SearchForm__button__label}>Search</span>
+        </button>
       </form>
+      {films && (
+        <div className={s.section__search}>
+         {films && <h2 className={s.title}>
+Search results</h2>}
+          <ul>
+            {films.data.results.map(film => (
+              <li className={s.search__item} key={film.id}>
+                <Link
+                  to={`/movies/${film.id}`}
+                  state={{ from: location }}
+                  className={s.trending__list}
+                >
+                  {film.original_title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

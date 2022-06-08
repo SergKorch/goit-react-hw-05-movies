@@ -1,0 +1,25 @@
+.SearchForm{
+    display: block;
+    margin: 20px;
+}
+.SearchForm__input {
+    width: 200px;
+
+}
+.SearchForm__button {
+    width: 70px;
+}
+.section__search {
+    font-size: 20px;
+}
+.search__item {
+    display: block;
+    padding: 5px;
+    list-style-type: none;
+    font-size: 20px;
+    width: 500px;
+  }
+  .search__item:hover {
+    background-color:darkorange;
+  
+  }

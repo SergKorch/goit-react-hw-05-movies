@@ -1,5 +1,3 @@
-// import { NavLink } from "react-router-dom";
-// import s from './navigation.module.css'
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import trendingAPI from 'services/trendingAPI';

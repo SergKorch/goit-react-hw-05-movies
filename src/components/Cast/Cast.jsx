@@ -1,12 +1,14 @@
-import s from './cast.module.css'
+import s from './cast.module.css';
 const Cast = ({ cast }) => {
   console.log('Cast');
   return (
-    <ul>
+    <ul className={s.section__casts}>
       {cast.map(el => {
         return (
-          <li key={el.id}>
-            <img className={s.foto}              src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
+          <li key={el.id} className={s.cast__card}>
+            <img
+              className={s.foto}
+              src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
               alt={el.name}
             />
             <p>{el.name}</p>

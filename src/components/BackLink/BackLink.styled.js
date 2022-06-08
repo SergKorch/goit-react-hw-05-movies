@@ -10,6 +10,9 @@ export const Link = styled(RouterLink)`
   text-decoration: none;
   text-transform: uppercase;
   color: #010101;
+  border: 1px solid black;
+  border-radius: 10%;
+  margin: 10px;
   :hover {
     color: #2196f3;
   }
