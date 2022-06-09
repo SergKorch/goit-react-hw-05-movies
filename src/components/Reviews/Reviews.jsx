@@ -8,17 +8,21 @@ const Reviews = ({ movieId }) => {
       .catch(err => console.log(err));
   }, [movieId]);
   return (
-    <ul>
-      {review && movieId &&
-        review.data.results.map(({ id, author, content }) => {
-          return (
-            <li key={id}>
-              <h3>{author}</h3>
-              <p>{content}</p>
-            </li>
-          );
-        })}
-    </ul>
+    <div>
+      {movieId && review?.data?.results?.length === 0 && <h2>No reviews</h2>}
+      <ul>
+        {review &&
+          movieId &&
+          review.data.results.map(({ id, author, content }) => {
+            return (
+              <li key={id}>
+                <h3>{author}</h3>
+                <p>{content}</p>
+              </li>
+            );
+          })}
+      </ul>
+    </div>
   );
 };
 export default Reviews;

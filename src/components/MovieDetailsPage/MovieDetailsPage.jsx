@@ -19,14 +19,19 @@ const MovieDetailsPage = () => {
       .then(setFilm)
       .catch(err => console.log(err));
   }, [movieId]);
+
   return (
     <div className={s.section_card}>
       <BackLink />
-      {film && movieId && (
+      {film !== null && movieId && (
         <>
           <img
             className={s.section_foto}
-            src={`https://image.tmdb.org/t/p/w500${film.data.backdrop_path}`}
+            src={
+              film.data.backdrop_path
+                ? `https://image.tmdb.org/t/p/w500${film.data.backdrop_path}`
+                : ''
+            }
             alt={film.data.title}
           />
           <h1>{film.data.title}</h1>
@@ -35,7 +40,7 @@ const MovieDetailsPage = () => {
           <h2>Genres</h2>
           <ul>
             {film.data.genres.map(({ id, name }) => {
-              return <li key={id}>{name}</li>;
+              return <span key={id}>{name} </span>;
             })}
           </ul>
           <h2>Additional information</h2>
@@ -47,7 +52,7 @@ const MovieDetailsPage = () => {
           </p>
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-              <Route path="cast" element={<Cast cast={info.data?.cast} />} />
+              <Route path="cast" element={<Cast cast={info.data.cast} />} />
               <Route path="reviews" element={<Reviews movieId={movieId} />} />
             </Routes>
           </Suspense>

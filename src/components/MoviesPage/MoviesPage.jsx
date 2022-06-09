@@ -10,15 +10,19 @@ const MoviesPage = () => {
   const query = searchParams.get('query');
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams({ query: e.currentTarget.elements.query.value });
+    const normalizeQuery = e.currentTarget.elements.query.value
+      .trim()
+      .toLowerCase();
+    setSearchParams({ query: normalizeQuery });
   };
 
   useEffect(() => {
-    if (query) {
-      searchAPI(query)
-        .then(setFilms)
-        .catch(err => console.log(err));
-    } else console.log('Введите поиск корректно');
+    if (!query) {
+      return;
+    }
+    searchAPI(query)
+      .then(setFilms)
+      .catch(err => console.log(err));
   }, [query]);
 
   return (
@@ -36,11 +40,11 @@ const MoviesPage = () => {
           <span className={s.SearchForm__button__label}>Search</span>
         </button>
       </form>
-      {films && (
-        <div className={s.section__search}>
-          {films && <h2 className={s.title}>Search results</h2>}
-          <ul>
-            {films.data.results.map(({ id, original_title }) => (
+      <div className={s.section__search}>
+        {films && <h2 className={s.title}>Search results</h2>}
+        <ul>
+          {films &&
+            films.data.results.map(({ id, original_title }) => (
               <li className={s.search__item} key={id}>
                 <Link
                   to={`/movies/${id}`}
@@ -51,9 +55,8 @@ const MoviesPage = () => {
                 </Link>
               </li>
             ))}
-          </ul>
-        </div>
-      )}
+        </ul>
+      </div>
     </div>
   );
 };

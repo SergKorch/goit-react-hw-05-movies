@@ -4,6 +4,6 @@
     margin-right: 50px;
 } 
 .section_foto {
-    display: block;
+    display: flex;
     max-width: 500px;
 }
