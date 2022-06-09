@@ -19,30 +19,34 @@ const MovieDetailsPage = () => {
       .then(setFilm)
       .catch(err => console.log(err));
   }, [movieId]);
-
   return (
     <div className={s.section_card}>
       <BackLink />
       {film !== null && movieId && (
-        <>
-          <img
-            className={s.section_foto}
-            src={
-              film.data.backdrop_path
-                ? `https://image.tmdb.org/t/p/w500${film.data.backdrop_path}`
-                : ''
-            }
-            alt={film.data.title}
-          />
-          <h1>{film.data.title}</h1>
-          <h2>Overview</h2>
-          <p>{film.data.overview}</p>
-          <h2>Genres</h2>
-          <ul>
-            {film.data.genres.map(({ id, name }) => {
-              return <span key={id}>{name} </span>;
-            })}
-          </ul>
+        <div>
+          <div className={s.section_film}>
+            <img
+              className={s.section_foto}
+              src={
+                film.data.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${film.data.poster_path}`
+                  : ''
+              }
+              alt={film.data.title}
+            />
+            <div className={s.section_info}>
+              <h1>{film.data.title}</h1>
+              <p>User Score: {film.data.vote_average * 10}%</p>
+              <h2>Overview</h2>
+              <p>{film.data.overview}</p>
+              <h2>Genres</h2>
+              <ul>
+                {film.data.genres.map(({ id, name }) => {
+                  return <span key={id}>{name} </span>;
+                })}
+              </ul>
+            </div>
+          </div>
           <h2>Additional information</h2>
           <p>
             <Link to="cast">Casts</Link>
@@ -56,7 +60,7 @@ const MovieDetailsPage = () => {
               <Route path="reviews" element={<Reviews movieId={movieId} />} />
             </Routes>
           </Suspense>
-        </>
+        </div>
       )}
     </div>
   );

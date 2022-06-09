@@ -16,7 +16,7 @@ const Reviews = ({ movieId }) => {
           review.data.results.map(({ id, author, content }) => {
             return (
               <li key={id}>
-                <h3>{author}</h3>
+                <h3>Author: {author}</h3>
                 <p>{content}</p>
               </li>
             );

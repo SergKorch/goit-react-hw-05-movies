@@ -8,4 +8,11 @@
   text-align: center;
   width: 150px;
   border: 1px solid black;
+  margin: 5px;
+  border-radius: 5px;
+}
+.section__casts {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
 }

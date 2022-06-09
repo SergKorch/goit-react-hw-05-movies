@@ -41,7 +41,12 @@ const MoviesPage = () => {
         </button>
       </form>
       <div className={s.section__search}>
-        {films && <h2 className={s.title}>Search results</h2>}
+        {films?.data?.results?.length === 0 && (
+          <h2 className={s.title}>No results</h2>
+        )}
+        {films?.data?.results?.length > 0 && (
+          <h2 className={s.title}>Search results</h2>
+        )}
         <ul>
           {films &&
             films.data.results.map(({ id, original_title }) => (
