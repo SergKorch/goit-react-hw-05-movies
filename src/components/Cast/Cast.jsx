@@ -1,4 +1,5 @@
 import s from './cast.module.css';
+import PropTypes from 'prop-types';
 const Cast = ({ cast }) => {
   return (
     <>
@@ -22,5 +23,7 @@ const Cast = ({ cast }) => {
     </>
   );
 };
-
+Cast.propTypes = {
+  cast: PropTypes.array.isRequired,
+};
 export default Cast;
