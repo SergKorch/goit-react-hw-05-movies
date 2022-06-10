@@ -1,12 +1,22 @@
 import s from './cast.module.css';
+import { useEffect, useState } from 'react';
+import movieIdAPI from 'services/movieIdAPI/movieIdAPI';
 import PropTypes from 'prop-types';
-const Cast = ({ cast }) => {
+const Cast = ({ movieId }) => {
+  const [info, setInfo] = useState(null);
+  useEffect(() => {
+    movieIdAPI(movieId)
+      .then(setInfo)
+      .catch(err => console.log(err));
+  }, [movieId]);
   return (
     <>
-      {cast && cast?.length === 0 && <h2>No information about actors</h2>}
+      {info && info?.data?.cast?.length === 0 && (
+        <h2>No information about actors</h2>
+      )}
       <ul className={s.section__casts}>
-        {cast &&
-          cast.map(({ id, profile_path, name, character }) => {
+        {info &&
+          info.data.cast.map(({ id, profile_path, name, character }) => {
             return (
               <li key={id} className={s.cast__card}>
                 <img
@@ -24,6 +34,6 @@ const Cast = ({ cast }) => {
   );
 };
 Cast.propTypes = {
-  cast: PropTypes.array.isRequired,
+  movieId: PropTypes.string.isRequired,
 };
 export default Cast;

@@ -7,6 +7,7 @@ const MoviesPage = () => {
   const [films, setFilms] = useState(null);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [queryInp, setQueryInp] = useState('');
   const query = searchParams.get('query');
   const handleSubmit = e => {
     e.preventDefault();
@@ -23,6 +24,7 @@ const MoviesPage = () => {
     searchAPI(query)
       .then(setFilms)
       .catch(err => console.log(err));
+      setQueryInp(query)
   }, [query]);
 
   return (
@@ -35,6 +37,7 @@ const MoviesPage = () => {
           autoFocus
           placeholder="Search films"
           name="query"
+          defaultValue={queryInp}
         />
         <button type="submit" className={s.SearchForm__button}>
           <span className={s.SearchForm__button__label}>Search</span>
