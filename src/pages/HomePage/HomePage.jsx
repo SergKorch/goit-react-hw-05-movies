@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import trendingAPI from 'services/trendingAPI';
+import trendingAPI from '../../services/trendingAPI'
 import s from './HomePage.module.css';
 const HomePage = () => {
   const location = useLocation();

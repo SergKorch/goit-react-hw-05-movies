@@ -1,6 +1,6 @@
 import s from './cast.module.css';
 import { useEffect, useState } from 'react';
-import movieIdAPI from 'services/movieIdAPI/movieIdAPI';
+import movieIdAPI from 'services/movieIdAPI';
 import PropTypes from 'prop-types';
 const Cast = ({ movieId }) => {
   const [info, setInfo] = useState(null);

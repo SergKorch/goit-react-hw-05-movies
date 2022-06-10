@@ -1,20 +1,15 @@
 import { Link, useParams, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, Suspense, lazy } from 'react';
 import BackLink from 'components/BackLink/BackLink';
-import movieIdAPI from 'services/movieIdAPI/movieIdAPI';
 import cardMoviesAPI from 'services/cardMoviesAPI';
 import s from './MovieDetailsPage.module.css';
-const Cast = lazy(() => import('components/Cast/Cast.jsx'));
-const Reviews = lazy(() => import('components/Reviews/Reviews.jsx'));
+const Cast = lazy(() => import('../Cast/Cast'));
+const Reviews = lazy(() => import('../Reviews/Reviews'));
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const [info, setInfo] = useState(null);
   const [film, setFilm] = useState(null);
 
   useEffect(() => {
-    movieIdAPI(movieId)
-      .then(setInfo)
-      .catch(err => console.log(err));
     cardMoviesAPI(movieId)
       .then(setFilm)
       .catch(err => console.log(err));
@@ -56,7 +51,7 @@ const MovieDetailsPage = () => {
           </p>
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-              <Route path="cast" element={<Cast cast={info?.data?.cast} />} />
+              <Route path="cast" element={<Cast movieId={movieId} />} />
               <Route path="reviews" element={<Reviews movieId={movieId} />} />
             </Routes>
           </Suspense>
