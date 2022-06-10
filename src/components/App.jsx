@@ -6,7 +6,6 @@ const MoviesPage = lazy(()=>import ('../pages/MoviesPage/MoviesPage.jsx'))
 const NotFind = lazy(()=>import ('../pages/NotFind/NotFind.jsx'))
 const MovieDetailsPage = lazy(()=>import ('../pages/MovieDetailsPage/MovieDetailsPage.jsx'))
 const HomePage = lazy(()=>import ('../pages/HomePage/HomePage.jsx'))
-
 export const App = () => {
   return (
     <div>

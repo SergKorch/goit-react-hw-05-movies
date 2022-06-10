@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import s from './BackLink.module.css';
 const BackLink = () => {
   const location = useLocation();
-
   return (
     <div className={s.link}>
       <Link to={location.state?.from ?? '/'}>

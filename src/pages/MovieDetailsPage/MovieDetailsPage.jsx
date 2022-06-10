@@ -8,7 +8,6 @@ const Reviews = lazy(() => import('../Reviews/Reviews'));
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [film, setFilm] = useState(null);
-
   useEffect(() => {
     cardMoviesAPI(movieId)
       .then(setFilm)
